@@ -6,9 +6,6 @@ project(${PROJECT_NAME} CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(main.cpp tcp_server.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/net/tcp_server.cpp)
 
-target_include_directories(
-    src 
-    src/net
-)
+target_include_directories(${PROJECT_NAME} PRIVATE src/net)
