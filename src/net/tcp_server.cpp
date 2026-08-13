@@ -40,4 +40,12 @@ void TCPServer::start(){
     }
 }
 
-void TCPServer::handleClient(int clientSocket){}
+void TCPServer::handleClient(int clientSocket){
+    char buffer[1024];
+    ssize_t readBytes = recv(clientSocket, buffer, 1024, 0);
+    while(readBytes > 0){
+        send(clientSocket, buffer, readBytes, 0);
+        readBytes = recv(clientSocket, buffer, 1024, 0);
+    }
+    close(clientSocket);
+}
